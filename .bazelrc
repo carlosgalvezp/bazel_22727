@@ -1,0 +1,4 @@
+common:arm --platforms=//tools/bazel/platforms:arm_none
+
+common:clang --extra_toolchains=//tools/bazel/toolchain:clang_toolchain_for_linux_x86_64
+common:clang --extra_toolchains=//tools/bazel/toolchain:clang_toolchain_for_arm_none

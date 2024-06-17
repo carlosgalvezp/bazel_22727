@@ -1,0 +1,40 @@
+package(default_visibility = ["//visibility:public"])
+
+load(":cc_toolchain_config.bzl", "cc_toolchain_config")
+
+filegroup(
+    name = "all_files",
+    srcs = glob(["**"]),
+)
+
+cc_toolchain_config(
+    name = "arm_none_toolchain_config",
+    compiler_name = "gcc",
+    target_cpu = "arm",
+    sysroot = "external/arm",
+    tool_paths = {
+        "gcc" : "bin/arm-none-eabi-g++",
+        "ld" :  "bin/arm-none-eabi-ld",
+        "ar":   "bin/arm-none-eabi-ar",
+        "cpp" : "/bin/false",
+        "gcov" : "/bin/false",
+        "nm" : "/bin/false",
+        "objdump" : "/bin/false",
+        "strip": "/bin/false",
+    },
+)
+
+cc_toolchain(
+    name = "arm_none_toolchain",
+    toolchain_identifier = "arm_none-toolchain",
+    toolchain_config = ":arm_none_toolchain_config",
+    all_files = ":all_files",
+    as_files = ":all_files",
+    ar_files = ":all_files",
+    compiler_files = ":all_files",
+    dwp_files = ":all_files",
+    linker_files = ":all_files",
+    objcopy_files = ":all_files",
+    strip_files = ":all_files",
+    supports_param_files = 0,
+)
